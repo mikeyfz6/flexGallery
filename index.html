@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KidsForMummy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="header">
+    <header>This is for the best mummy in the world xxx</header>
+</div>
+
+<div class="panels">
+    <div class="panel panel1">
+        <p>Mummy </p>
+        <p>Shannon</p>
+        <p>Loves You<br>To the Moon and Back xxx</p>
+    </div>
+    <div class="panel panel2">
+        <p>Mummy </p>
+        <p>Connor</p>
+        <p>Say's Your the Best Mummy in The World xxx</p>
+    </div>
+    <div class="panel panel3">
+        <p>Mummy</p>
+        <p>Shyla</p>
+        <p>Loves your Amazing Cuddles and Kisses xxx</p>
+    </div>
+</div>
+<div>
+    <footer>
+        We love Your More Than words could ever say xxxxx
+    </footer>
+</div>
+</body>
+
+<script>
+    class Toggler {
+        static of(panels) {
+            return new Toggler(panels);
+        }
+
+        constructor(panels) {
+            this.panels = document.querySelectorAll(panels);
+        }
+
+        toggleOpen(e) {
+            if (e.target.classList.contains('open')) {
+                e.target.classList.remove('open');
+            } else {
+                this.panels.forEach(panel => panel.classList.remove('open', 'open-active'));
+                e.target.classList.add('open');
+            }
+        }
+
+        toggleActive(e) {
+            if (e.propertyName.includes('flex')) {
+                e.target.classList.remove('open-active');
+                if (e.target.classList.contains("open")) {
+                    e.target.classList.add('open-active');
+                }
+            }
+        }
+
+        bind() {
+            this.panels.forEach(panel => panel.addEventListener('click', e => this.toggleOpen(e)));
+            this.panels.forEach(panel => panel.addEventListener('transitionend', e => this.toggleActive(e)));
+        }
+    }
+
+    Toggler.of('.panel').bind();
+
+</script>
+</html>
